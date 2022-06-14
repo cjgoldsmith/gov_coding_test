@@ -76,7 +76,11 @@ class Queen(ChessPeice):
         possible = []
         column, row = self._tokenize_square(square)
 
+        # Generate rook moves since they overlap with Queen
         possible += list(self.rook.generate_moves(square))
+
+        # Leverage the fact that boards are square, generate all diagonals
+        # for the possible length of the board.
         for r in range(self.BOARD_ROW_MAX - self.BOARD_ROW_MIN):
             diagonals = [
                 [chr(ord(column) + (r + 1)), row + (r + 1)],
@@ -84,6 +88,8 @@ class Queen(ChessPeice):
                 [chr(ord(column) - (r + 1)), row + (r + 1)],
                 [chr(ord(column) - (r + 1)), row - (r + 1)],
             ]
+
+            # Serialize the diagonal, filter out invalid move options
             diagonals = [d[0] + str(d[1])
                          for d in diagonals if self.is_square(*d)]
             possible += diagonals
@@ -92,9 +98,39 @@ class Queen(ChessPeice):
         return possible
 
 
+class Knight(ChessPeice):
+
+    MOVE_SET = (
+        [2, 1],
+        [2, -1],
+        [1, 2],
+        [1, -2],
+        [-2, 1],
+        [-2, -1],
+        [-1, 2],
+        [-1, -2],
+    )
+
+    def generate_moves(self, square):
+        square = square.upper()
+        column, row = self._tokenize_square(square)
+
+        # Generate all possible moves, even invalid ones
+        knight_possible = map(
+            lambda ms: [chr(ord(column) + ms[0]), row + ms[1]], self.MOVE_SET)
+
+        # Serialize moves and filter out invalid move options
+        possible = [pos[0] + str(pos[1])
+                    for pos in knight_possible if self.is_square(*pos)]
+        log.msg('Generated Moves', name=str(self.__class__),
+                square=square, possible=possible)
+        return possible
+
+
 PEICE_MAP = {
     ChessPeice.ROOK: Rook(),
     ChessPeice.QUEEN: Queen(),
+    ChessPeice.KNIGHT: Knight(),
 }
 
 
