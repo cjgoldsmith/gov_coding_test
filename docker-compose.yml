@@ -1,0 +1,15 @@
+version: '3.4'
+
+volumes:
+  one-volume:
+
+services:
+  one:
+    image: "one"
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.one
+    volumes:
+      - one-volume:/var/data
+      - ./:/var/task
+    

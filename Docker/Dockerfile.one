@@ -1,0 +1,19 @@
+FROM lambci/lambda:build-python3.8
+# AWS linux, like on lambda
+
+RUN yum update -y
+
+# RUN pip install --upgrade pip setuptools wheel # to get latest setuptools
+RUN pip install --upgrade pip wheel
+RUN pip install setuptools
+
+# Set the default directory where CMD will execute
+RUN mkdir -p /var/task
+RUN mkdir -p /var/data
+WORKDIR /var/task
+
+ADD requirements.txt /var/task
+
+RUN pip install -r requirements.txt
+
+ENTRYPOINT ["pytest", "-rP", "guess_number/tests.py"]
