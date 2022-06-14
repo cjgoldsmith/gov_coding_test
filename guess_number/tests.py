@@ -1,8 +1,8 @@
-from guess_number.guess import guess_number_persist_results
+import math
 from functools import partial
 
-import math
 import structlog
+from guess_number.guess import guess_number_persist_results
 
 log = structlog.get_logger()
 

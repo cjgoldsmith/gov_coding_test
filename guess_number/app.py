@@ -1,6 +1,7 @@
 import argparse
+
 from guess_number.guess import guess_number_accumulate
-from guess_number.persist import get_accumulated, AVERAGE
+from guess_number.persist import AVERAGE, get_accumulated
 
 DESCRIPTION = (
     "Play the guessing game, enter the maximum number (n),",

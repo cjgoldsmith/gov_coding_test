@@ -1,4 +1,5 @@
 import json
+
 import structlog
 
 log = structlog.get_logger()

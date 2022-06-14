@@ -1,7 +1,7 @@
-from guess_number.persist import persist_results, accumulate
-
 import math
+
 import structlog
+from guess_number.persist import accumulate, persist_results
 
 log = structlog.get_logger()
 

@@ -1,6 +1,6 @@
-from chess.positions import possible_moves
-
 import argparse
+
+from chess.positions import possible_moves
 
 DESCRIPTION = (
     "Given a chess piece and a board position, displays all possible positions ",
