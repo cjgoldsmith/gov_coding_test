@@ -3,13 +3,22 @@ version: '3.4'
 volumes:
   one-volume:
 
+
 services:
   one:
+    &one
     image: "one"
     build:
       context: .
       dockerfile: Docker/Dockerfile.one
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONPATH=/var/task/:$PYTHONPATH
     volumes:
       - one-volume:/var/data
       - ./:/var/task
-    
+
+  play_one:
+    <<: *one
+    entrypoint: python3 guess_number/app.py

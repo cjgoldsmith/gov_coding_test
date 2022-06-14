@@ -1,4 +1,8 @@
 # gov_coding_test
 
-* Instructions to run
-** docker-compose up - runs test files for both assignments and outputs logging messages to stdio
+## Instructions to run
+### Question one
+Test
+`docker-compose run --rm one`
+Game
+`docker-compose run --rm play_one`

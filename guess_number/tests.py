@@ -1,4 +1,4 @@
-from .guess_number import guess_number
+from guess_number.guess import guess_number_persist_results
 from functools import partial
 
 import math
@@ -12,6 +12,7 @@ def _test_guess(n):
     Base test method, tests guess number functionality for all
     numbers 0 - n.
     """
+    max_guesses = math.ceil(math.log2(n)) + 1
     for secret_number in range(n + 1):
         def answer(guess):
             if guess > secret_number:
@@ -21,10 +22,10 @@ def _test_guess(n):
             elif guess == secret_number:
                 return 'c'
 
-        guesses = guess_number(0, n, answer)
-        if guesses > (math.log2(n) + 1):
+        _, guesses = guess_number_persist_results(0, n, answer)
+        if guesses > max_guesses:
             log.msg('Maxinum number of guesses exceeded', n=n,
-                    guesses=guesses, secret_number=secret_number)
+                    guesses=guesses, secret_number=secret_number, max_guesses=max_guesses)
             assert False
         else:
             log.msg('Successfully guessed', n=n,
@@ -33,5 +34,6 @@ def _test_guess(n):
 
 # Concrete test cases
 test_100 = partial(_test_guess, 100)
-test_1000 = partial(_test_guess, 1000)
+test_250 = partial(_test_guess, 250)
 test_4 = partial(_test_guess, 4)
+test_1 = partial(_test_guess, 2)

@@ -1,7 +1,7 @@
-FROM lambci/lambda:build-python3.8
+FROM python:3.10.5-bullseye
 # AWS linux, like on lambda
 
-RUN yum update -y
+RUN apt-get update -yum
 
 # RUN pip install --upgrade pip setuptools wheel # to get latest setuptools
 RUN pip install --upgrade pip wheel
@@ -11,6 +11,8 @@ RUN pip install setuptools
 RUN mkdir -p /var/task
 RUN mkdir -p /var/data
 WORKDIR /var/task
+
+ENV PYTHONPATH "/var/task/:$PYTHONPATH"
 
 ADD requirements.txt /var/task
 
