@@ -7,12 +7,11 @@ import structlog
 log = structlog.get_logger()
 
 
-def test_hello():
-    print('test hello')
-    assert True
-
-
 def _test_guess(n):
+    """
+    Base test method, tests guess number functionality for all
+    numbers 0 - n.
+    """
     for secret_number in range(n + 1):
         def answer(guess):
             if guess > secret_number:
@@ -32,6 +31,7 @@ def _test_guess(n):
                     guesses=guesses, secret_number=secret_number)
 
 
+# Concrete test cases
 test_100 = partial(_test_guess, 100)
 test_1000 = partial(_test_guess, 1000)
 test_4 = partial(_test_guess, 4)
