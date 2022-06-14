@@ -35,3 +35,7 @@ services:
       - PYTHONPATH=/var/task/:$PYTHONPATH
     volumes:
       - ./:/var/task
+
+  play_two:
+    <<: *two
+    entrypoint: python3 chess/app.py

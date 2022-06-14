@@ -1,9 +1,6 @@
 import argparse
 from guess_number.guess import guess_number_accumulate
 from guess_number.persist import get_accumulated, AVERAGE
-import sys
-print(','.join(sys.path))
-
 
 DESCRIPTION = (
     "Play the guessing game, enter the maximum number (n),",

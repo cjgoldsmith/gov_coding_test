@@ -13,3 +13,6 @@ Game
 
 Test
 `docker-compose run --rm two`
+
+Game
+`docker-compose run --rm play_two --peice KNIGHT --position d2`
