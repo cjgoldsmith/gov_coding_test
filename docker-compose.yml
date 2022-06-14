@@ -22,3 +22,16 @@ services:
   play_one:
     <<: *one
     entrypoint: python3 guess_number/app.py
+
+  two:
+    &two
+    image: "two"
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.two
+    stdin_open: true
+    tty: true
+    environment:
+      - PYTHONPATH=/var/task/:$PYTHONPATH
+    volumes:
+      - ./:/var/task

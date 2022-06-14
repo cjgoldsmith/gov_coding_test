@@ -36,4 +36,4 @@ def _test_guess(n):
 test_100 = partial(_test_guess, 100)
 test_250 = partial(_test_guess, 250)
 test_4 = partial(_test_guess, 4)
-test_1 = partial(_test_guess, 2)
+test_2 = partial(_test_guess, 2)

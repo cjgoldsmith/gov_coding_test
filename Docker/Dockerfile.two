@@ -1,5 +1,6 @@
 FROM python:3.10.5-bullseye
 
+
 RUN apt-get update -y
 
 # RUN pip install --upgrade pip setuptools wheel # to get latest setuptools
@@ -17,4 +18,4 @@ ADD requirements.txt /var/task
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["pytest", "-rP", "guess_number/tests.py"]
+ENTRYPOINT ["pytest", "-rP", "chess/tests.py"]
