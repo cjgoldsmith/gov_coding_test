@@ -1,4 +1,13 @@
-from chess.positions import possible_moves
+from chess.positions import ChessPeice, possible_moves
+
+
+def all_squares():
+    for r in range(ChessPeice.BOARD_ROW_MAX - ChessPeice.BOARD_ROW_MIN + 1):
+        for c in range(ChessPeice.BOARD_ROW_MAX - ChessPeice.BOARD_ROW_MIN + 1):
+            row = ChessPeice.BOARD_ROW_MIN + r
+            col = chr(ord(ChessPeice.BOARD_COLUMN_MIN) + c)
+            print(f'Yielding {col} {str(row)}')
+            yield col + str(row)
 
 
 def test_rook_position():
@@ -30,3 +39,18 @@ def test_knight_position():
     assert len(results) == 4
     assert 'F6' in results
     assert 'G3' in results
+
+
+def test_all_rook():
+    for square in all_squares():
+        possible_moves('Rook', square)
+
+
+def test_all_queen():
+    for square in all_squares():
+        possible_moves('Queen', square)
+
+
+def test_all_knight():
+    for square in all_squares():
+        possible_moves('Knight', square)
