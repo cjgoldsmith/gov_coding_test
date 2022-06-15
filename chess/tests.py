@@ -6,7 +6,6 @@ def all_squares():
         for c in range(ChessPeice.BOARD_ROW_MAX - ChessPeice.BOARD_ROW_MIN + 1):
             row = ChessPeice.BOARD_ROW_MIN + r
             col = chr(ord(ChessPeice.BOARD_COLUMN_MIN) + c)
-            print(f'Yielding {col} {str(row)}')
             yield col + str(row)
 
 
