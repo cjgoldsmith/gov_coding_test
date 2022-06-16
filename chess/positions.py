@@ -40,9 +40,9 @@ class ChessPeice:
 
     @classmethod
     def is_square(cls, column, row):
-        if (column < cls.BOARD_COLUMN_MIN) or (column > cls.BOARD_COLUMN_MAX):
-            return False
-        if (row > cls.BOARD_ROW_MAX) or (row < cls.BOARD_ROW_MIN):
+        try:
+            cls.validate_square_token(column + str(row))
+        except ValueError:
             return False
         return True
 
