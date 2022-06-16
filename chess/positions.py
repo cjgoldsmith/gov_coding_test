@@ -1,6 +1,5 @@
-from chess.decorators import log_results
-
 import structlog
+from chess.decorators import log_results
 
 log = structlog.get_logger()
 
@@ -71,8 +70,6 @@ class Rook(ChessPeice):
 
 class Queen(ChessPeice):
 
-    rook = Rook()
-
     @classmethod
     @log_results
     def generate_moves(cls, square):
@@ -81,7 +78,7 @@ class Queen(ChessPeice):
         column, row = cls._tokenize_square(square)
 
         # Generate rook moves since they overlap with Queen
-        possible += list(cls.rook.generate_moves(square))
+        possible += list(Rook.generate_moves(square))
 
         # Leverage the fact that boards are square, generate all diagonals
         # for the possible length of the board.
@@ -120,8 +117,8 @@ class Knight(ChessPeice):
         column, row = cls._tokenize_square(square)
 
         # Generate all possible moves, even invalid ones
-        knight_possible = map(
-            lambda ms: [chr(ord(column) + ms[0]), row + ms[1]], cls.MOVE_SET)
+        knight_possible = [[chr(ord(column) + ms[0]), row + ms[1]]
+                           for ms in cls.MOVE_SET]
 
         # Serialize moves and filter out invalid move options
         possible = [pos[0] + str(pos[1])

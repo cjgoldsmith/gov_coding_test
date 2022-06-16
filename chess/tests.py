@@ -1,8 +1,7 @@
 from functools import partial
 
-from chess.positions import ChessPeice, possible_moves
-
 import pytest
+from chess.positions import ChessPeice, possible_moves
 
 
 def all_squares():
