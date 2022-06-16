@@ -14,6 +14,7 @@ def all_squares():
 
 def test_rook_position():
     results = list(possible_moves('Rook', 'A8'))
+    assert len(results) == 14
     assert 'A8' not in results
     assert 'H8' in results
     assert 'A1' in results
@@ -21,6 +22,7 @@ def test_rook_position():
 
 def test_queen_position():
     results = list(possible_moves('Queen', 'B7'))
+    assert len(results) == 23
     assert 'B7' not in results
     assert 'A5' not in results
     assert 'A8' in results
